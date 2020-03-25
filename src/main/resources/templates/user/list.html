@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2><a href="/user" th:href="@{/user}">员工添加</a></h2>>
+<form action="post">
+    <table>
+        <tr>
+            <th>name</th>
+            <th>id</th>
+            <th>操作</th>
+        </tr>
+        <tr th:each="user:${users}">
+            <td th:text="user.Name"></td>
+            <td th:text="user.Id"></td>
+            <td>
+                <a th:href="@{/emp/}+${emp.Id}">编辑</a>
+                <button class="btn-delete" th:attr="del_uri=@{/user/}+${user.Id}">删除</button>
+            </td>
+        </tr>
+    </table>
+    <hr>
+
+    <from id="deleteUserForm" method="post">
+        <input type="text" name="post">
+    </from>
+</form>
+<script>
+    $(".btn-delete").click(function(){
+        $("#deleteUserForm").attr("action",$(this).attr("del_uri")).submit();
+    })
+</script>
+</body>
+</html>

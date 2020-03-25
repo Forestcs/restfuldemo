@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--修改添加共用一个页面-->
+<form th:action="@{/user}" method="post">
+    <input type="hidden" name="_method" value="put" th:if="${user!=null}"/>
+    <label>id</label>
+    <input type="text" name="Id" placeholder="1" th:value="${user!=null}?${user.Id}">
+    <label>name</label>
+    <input type="text" name="Name" placeholder="zhangsan" th:value="${user!=null}?${user.Name}">
+    <button type="submit" class="btn btn-primary" th:text="${emp!=null}?'修改':'添加'">添加</button>
+</form>
+</body>
+</html>
